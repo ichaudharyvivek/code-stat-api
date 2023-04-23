@@ -18,7 +18,7 @@
     "import/no-extraneous-dependencies": "off",
     "import/newline-after-import": "off",
     "no-shadow": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": ["warn", { "vars": "all", "args": "none" }],
     "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }

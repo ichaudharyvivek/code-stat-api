@@ -1,17 +1,27 @@
 const express = require('express');
 const dotenv = require('dotenv');
 
-// App constants
-const PORT = process.env.PORT || 3000;
-
 // Initializations
 const app = express();
 app.use(express.json());
 dotenv.config();
 
+// App constants
+const PORT = process.env.PORT || 3000;
+
+// Require routes
+const profile = require('./api/v1/routes/profile.route');
+const code = require('./api/v1/routes/code.route');
+
+// Test
 app.get('/', (req, res) => {
   res.status(200).json({ success: true, message: 'SUCCESS' });
 });
+
+// API ROUTES - API V1 - /api/v1/
+const v1API = '/api/v1';
+app.use(`${v1API}/leetcode/profile`, profile);
+app.use(`${v1API}/leetcode/code`, code);
 
 // Listen to PORT
 const server = app.listen(PORT, () => {
