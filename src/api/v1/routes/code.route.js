@@ -5,6 +5,7 @@ const router = express.Router();
 const { getCodeSummary } = require('../controllers/code.controller');
 
 // Routes
+router.route('/').get(getCodeSummary);
 router.route('/:username').get(getCodeSummary);
 
 // Export router

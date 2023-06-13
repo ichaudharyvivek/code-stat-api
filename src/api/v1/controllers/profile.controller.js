@@ -1,5 +1,5 @@
 const ErrorResponse = require('../utils/errorResponse');
-const logger = require('../../../config/Logger');
+const logger = require('../../../config/logger');
 const asyncHandler = require('../middleware/asyncHandler');
 
 // @desc        Get profile overview
