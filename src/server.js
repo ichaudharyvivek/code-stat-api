@@ -19,7 +19,7 @@ const errorHandler = require('./api/v1/middleware/errorHandler');
 
 // API ROUTES - API V1 - /api/v1/
 const v1API = '/api/v1';
-app.use(`${v1API}/leetcode/profile`, profile);
+app.use(`${v1API}/leetcode/`, profile);
 app.use(`${v1API}/leetcode/code`, code);
 app.use(errorHandler);
 

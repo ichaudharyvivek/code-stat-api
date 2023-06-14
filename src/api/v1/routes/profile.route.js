@@ -5,7 +5,7 @@ const router = express.Router();
 const { getProfileSummary } = require('../controllers/profile.controller');
 
 // Routes
-router.route('/:username').get(getProfileSummary);
+router.route('/').get(getProfileSummary);
 
 // Export router
 module.exports = router;
