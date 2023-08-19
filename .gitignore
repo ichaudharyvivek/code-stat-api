@@ -10,5 +10,7 @@ node_modules/
 # dotenv environment variable files
 .env
 
-# User files
-.vscode/settings.json
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
