@@ -4,7 +4,7 @@ const formatData = (userProblemsSolvedData, userContestRankingInfoData) => {
   const totalQuesList = userProblemsSolvedData.allQuestionsCount;
 
   // 1. Add ratings
-  data.rating = userContestRankingInfoData.userContestRanking.rating;
+  data.rating = userContestRankingInfoData.userContestRanking?.rating || null;
 
   // 2. Cumulative data of question solved
   data.all = {
