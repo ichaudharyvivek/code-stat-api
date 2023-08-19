@@ -1,35 +1,21 @@
-const ErrorResponse = require('../utils/errorResponse');
 const logger = require('../../../config/logger');
+const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/asyncHandler');
-
-const {
-  userProblemsSolved,
-  userContestRankingInfo,
-} = require('../../../config/graphql/queries');
-
-const fetchQuery = require('../utils/fetchQuery');
+const { getProfileSummaryService } = require('../services/profile.service');
 
 // @desc        Get profile overview
-// @route       GET /api/v1/leetcode/profile/:username
+// @route       GET /api/v1/leetcode?username=<sting>&isDownload=<boolean>
 // @access      Public
 exports.getProfileSummary = asyncHandler(async (req, res, next) => {
   const { username } = req.query;
+  if (!username) {
+    return next(new ErrorResponse('Please provide a valid username.', 400));
+  }
 
-  const userProblemsSolvedData = await fetchQuery(
-    process.env.LEETCODE_API,
-    userProblemsSolved,
-    {
-      username,
-    }
-  );
+  const data = await getProfileSummaryService(username);
+  if (data.error) {
+    return next(new ErrorResponse(data.error, data.statusCode));
+  }
 
-  const userContestRankingInfoData = await fetchQuery(
-    process.env.LEETCODE_API,
-    userContestRankingInfo,
-    {
-      username,
-    }
-  );
-
-  res.status(200).json({ success: true });
+  res.status(200).json({ success: true, data });
 });

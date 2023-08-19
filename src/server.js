@@ -4,7 +4,6 @@ const logger = require('./config/logger');
 
 // Routes
 const profile = require('./api/v1/routes/profile.route');
-const code = require('./api/v1/routes/code.route');
 
 // App initializations
 const app = express();
@@ -19,8 +18,7 @@ const errorHandler = require('./api/v1/middleware/errorHandler');
 
 // API ROUTES - API V1 - /api/v1/
 const v1API = '/api/v1';
-app.use(`${v1API}/leetcode/`, profile);
-app.use(`${v1API}/leetcode/code`, code);
+app.use(`${v1API}/leetcode`, profile);
 app.use(errorHandler);
 
 // Invalid URL redirect
