@@ -21,9 +21,21 @@ const v1API = '/api/v1';
 app.use(`${v1API}/leetcode`, profile);
 app.use(errorHandler);
 
+// Home URL
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    msg: 'Please visit /api/v1/leetcode?username=<username> to get data',
+  });
+});
+
 // Invalid URL redirect
 app.get('*', (req, res) => {
-  res.status(404).json({ success: false, error: 'URL not found.' });
+  res.status(404).json({
+    success: false,
+    error: 'URL not found.',
+    msg: 'Please visit /api/v1/leetcode?username=<username> to get data',
+  });
 });
 
 // Listen to PORT
